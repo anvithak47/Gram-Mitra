@@ -14,15 +14,35 @@ from xml.sax.saxutils import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Kannada-capable font for PDF generation.
+
+# Database path handling for Vercel read-only filesystem
+if os.environ.get("VERCEL"):
+    DB_PATH = "/tmp/gram_mitra.db"
+    source_db = os.path.join(BASE_DIR, "gram_mitra.db")
+    if not os.path.exists(DB_PATH) and os.path.exists(source_db):
+        shutil.copy(source_db, DB_PATH)
+else:
+    DB_PATH = os.path.join(BASE_DIR, "gram_mitra.db")
+
+# Helper function to get database connection
+def get_db():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# Safe Kannada font registration for PDF generation
 KANNADA_FONT = os.path.join(BASE_DIR, "static", "fonts", "NotoSansKannada-Regular.ttf")
 KANNADA_BOLD_FONT = os.path.join(BASE_DIR, "static", "fonts", "NotoSansKannada-Bold.ttf")
-pdfmetrics.registerFont(TTFont("NotoKannada", KANNADA_FONT))
-pdfmetrics.registerFont(TTFont("NotoKannadaBold", KANNADA_BOLD_FONT))
+
+if os.path.exists(KANNADA_FONT) and os.path.exists(KANNADA_BOLD_FONT):
+    try:
+        pdfmetrics.registerFont(TTFont("NotoKannada", KANNADA_FONT))
+        pdfmetrics.registerFont(TTFont("NotoKannadaBold", KANNADA_BOLD_FONT))
+    except Exception as e:
+        print("Font registration error:", e)
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY") or "gram_mitra_fixed_secret_key_2026"
-
 # Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -734,6 +754,7 @@ def search_history():
     conn.close()
 
     return render_template('history.html', history=history)
+    
 @app.route("/download-report", methods=["POST"])
 def download_report():
     try:
