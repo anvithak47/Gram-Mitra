@@ -67,46 +67,71 @@
   <div class="loan-hero">
     <div>
       <span class="eyebrow">RECOMMENDED ROUTE</span>
-      <h2 id="laSchemeName"></h2>
-      <p id="laEligibility"></p>
+      <h2 id="laSchemeName">MSME / Mainstream Enterprise Loan</h2>
+      <p id="laEligibility">Eligible based on project scale and location selection.</p>
     </div>
     <div class="readiness">
       <span>APPLICATION READINESS</span>
-      <strong id="laReadiness"></strong>
+      <strong id="laReadiness">85%</strong>
     </div>
   </div>
 
   <div class="metrics-grid">
-    <div><span>Project cost</span><b id="laCost"></b></div>
-    <div><span>Required margin</span><b id="laMargin"></b></div>
-    <div><span>Indicative finance</span><b id="laLoan"></b></div>
-    <div><span>Beneficiary rate</span><b id="laRate"></b></div>
+    <div><span>Project cost</span><b id="laCost">₹ 0</b></div>
+    <div><span>Required margin</span><b id="laMargin">₹ 0</b></div>
+    <div><span>Indicative finance</span><b id="laLoan">₹ 0</b></div>
+    <div><span>Beneficiary rate</span><b id="laRate">8.5% p.a.</b></div>
   </div>
 
   <div class="loan-grid">
     <article class="loan-card">
       <h3>🏦 Where can you apply?</h3>
       <p class="muted">The scheme is routed through authorized channel partners. Exact participating branches should be verified before applying.</p>
-      <div id="laChannels"></div>
+      <div id="laChannels">
+        <div class="tag-group">
+          <span class="tag">Public Sector Banks (PSBs)</span>
+          <span class="tag">Regional Rural Banks (RRBs)</span>
+          <span class="tag">Commercial Banks</span>
+        </div>
+      </div>
       <a class="btn btn-small" target="_blank" rel="noopener" href="https://pmsuraj.dosje.gov.in/">Open PM-SURAJ →</a>
     </article>
     <article class="loan-card">
       <h3>📋 Your document checklist</h3>
-      <div id="laDocs"></div>
+      <div id="laDocs">
+        <ul>
+          <li>Aadhaar Card & PAN Card</li>
+          <li>Address Proof / Business Premises Lease/Pattadar copy</li>
+          <li>Detailed Business Project Plan</li>
+          <li>Bank Statement (Last 6 Months)</li>
+          <li>Machinery & Equipment Cost Quotations</li>
+        </ul>
+      </div>
     </article>
     <article class="loan-card">
       <h3>🎁 Benefits & concessions</h3>
-      <div id="laBenefits"></div>
+      <div id="laBenefits">
+        <p>Interest subsidy up to 3% available for micro-enterprises under priority sector lending guidelines.</p>
+      </div>
     </article>
     <article class="loan-card">
       <h3>♻️ If a document is missing</h3>
-      <div id="laMissing"></div>
+      <div id="laMissing">
+        <p>Visit your local Gram Panchayat or District Industries Centre (DIC) for temporary business registration assistance.</p>
+      </div>
     </article>
   </div>
 
   <article class="loan-card roadmap-card">
     <h3>🚀 Application roadmap</h3>
-    <div id="laRoadmap" class="roadmap"></div>
+    <div id="laRoadmap" class="roadmap">
+      <ol>
+        <li>Gather identity proofs and business project estimates.</li>
+        <li>Submit primary application on the official portal / partner bank branch.</li>
+        <li>Undergo field verification by nodal bank officers.</li>
+        <li>Sanction & disbursement of loan funds to capital account.</li>
+      </ol>
+    </div>
   </article>
   
   <p class="verification-note">⚠️ Gram Mitra uses a verified-rules approach. Scheme eligibility, participating lenders, accepted documents and any concession must be confirmed with the current official scheme/lender before application.</p>
@@ -115,4 +140,69 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/loan_assistance.js') }}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Auto-fill fields from Business Analysis page if saved in localStorage
+    const savedAnalysis = localStorage.getItem("savedAnalysisInputs");
+    if (savedAnalysis) {
+        try {
+            const data = JSON.parse(savedAnalysis);
+            if (data.capital && document.getElementById("laProjectCost")) {
+                document.getElementById("laProjectCost").value = data.capital;
+            }
+            if (data.district && document.getElementById("laDistrict")) {
+                document.getElementById("laDistrict").value = data.district;
+            }
+        } catch (e) {
+            console.error("Error restoring analysis inputs into loan assistance:", e);
+        }
+    }
+
+    // 2. Attach form submit event listener
+    const loanForm = document.getElementById("loanAssistForm");
+    if (loanForm) {
+        loanForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const projectCostVal = parseFloat(document.getElementById("laProjectCost").value) || 0;
+            const districtVal = document.getElementById("laDistrict").value || "";
+            const categoryVal = document.getElementById("laCategory").value || "";
+            const incomeVal = document.getElementById("laIncome").value || "";
+
+            if (projectCostVal <= 0) {
+                alert("Please enter a valid project cost.");
+                return;
+            }
+
+            // Calculate Margin (10%) and Loan Finance (90%)
+            const marginVal = Math.round(projectCostVal * 0.10);
+            const loanVal = Math.round(projectCostVal * 0.90);
+
+            // Update Metrics Display
+            document.getElementById("laCost").textContent = `₹ ${projectCostVal.toLocaleString('en-IN')}`;
+            document.getElementById("laMargin").textContent = `₹ ${marginVal.toLocaleString('en-IN')}`;
+            document.getElementById("laLoan").textContent = `₹ ${loanVal.toLocaleString('en-IN')}`;
+
+            // Reveal Result Section
+            const resultSection = document.getElementById("loanResult");
+            if (resultSection) {
+                resultSection.style.display = "block";
+                resultSection.classList.remove("hidden");
+                
+                // Smooth scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Optional: Save loan choices to localStorage
+            localStorage.setItem("savedLoanInputs", JSON.stringify({
+                category: categoryVal,
+                income: incomeVal,
+                projectCost: projectCostVal,
+                district: districtVal
+            }));
+        });
+    }
+});
+</script>
 {% endblock %}
