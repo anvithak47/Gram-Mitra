@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Gram Mitra{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">
+    <span class="brand-mark">✦</span>
+    <span>Gram Mitra</span>
+    <small data-i18n="brand_subtitle">Karnataka Business AI</small>
+  </a>
+  <nav>
+    <a href="{{ url_for('index') }}" data-i18n="nav_home">Home</a>
+    
+    <!-- Show links on internal pages OR when logged in -->
+    {% if request.endpoint != 'index' or (user and user.is_authenticated) %}
+      <a href="{{ url_for('dashboard') }}" data-i18n="nav_dashboard">Dashboard</a>
+      <a href="{{ url_for('analysis') }}" data-i18n="nav_analysis">Analysis</a>
+      <a href="{{ url_for('copilot') }}" data-i18n="nav_copilot">AI Copilot</a>
+      <a href="{{ url_for('loan_assistance') }}">Loan Help</a>
+      <a href="{{ url_for('performance') }}">Performance</a>
+    {% endif %}
+
+    <!-- Auth options -->
+    {% if user and user.is_authenticated %}
+      <a class="nav-user" href="{{ url_for('logout') }}">{{ user.name }} · <span data-i18n="logout">Logout</span></a>
+    {% else %}
+      <a href="{{ url_for('login') }}" data-i18n="nav_login">Login</a>
+      <a class="btn btn-small" href="{{ url_for('signup') }}" data-i18n="nav_signup">Get Started</a>
+    {% endif %}
+    
+    <button class="lang-btn" id="langToggle">ಕನ್ನಡ</button>
+  </nav>
+</header>
+<main>{% block content %}{% endblock %}</main>
+<footer>© 2026 Gram Mitra · <span data-i18n="brand_subtitle">Karnataka Business AI</span> · <span data-i18n="footer">Smarter decisions for local entrepreneurs</span></footer>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

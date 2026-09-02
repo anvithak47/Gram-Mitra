@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}AI Copilot — Gram Mitra{% endblock %}{% block content %}
+<section class="page-head"><span class="eyebrow" data-i18n="gram_mitra_ai">GRAM MITRA AI</span><h1 data-i18n="business_copilot">Business Copilot</h1><p data-i18n="copilot_intro">Ask naturally. Get focused guidance in English or ಕನ್ನಡ.</p></section>
+<section class="chat-shell">
+ <aside class="chat-side"><div class="copilot-avatar">✦</div><h2>Gram Mitra</h2><p data-i18n="your_partner">Your local business thinking partner.</p><div class="suggestions"><button data-i18n="suggest1">Suggest a business for my district</button><button data-i18n="suggest2">How much margin capital do I need?</button><button data-i18n="suggest3">Help me understand competition</button></div></aside>
+ <div class="chat-main"><div id="messages" class="messages"><div class="message ai"><div class="msg-icon">✦</div><div><span data-i18n="chat_greeting">Hello! Tell me what business you are planning, your district and your approximate budget. I’ll help you think through the next steps.</span></div></div></div>
+ <form id="chatForm" class="chat-input"><input id="chatText" autocomplete="off" data-i18n-placeholder="chat_placeholder" placeholder="Ask Gram Mitra anything about your business..." required><button class="btn" data-i18n="send" type="submit">Send →</button></form></div>
+</section>
+{% endblock %}{% block scripts %}<script src="{{ url_for('static', filename='js/copilot.js') }}"></script>{% endblock %}

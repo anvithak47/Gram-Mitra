@@ -1,0 +1,230 @@
+{
+  "Retail & Services": {
+    "typical_project_cost": 800000,
+    "interest_rate": 8.5,
+    "repayment_years": 5,
+    "market_opportunity": "Good potential where the business solves a daily local need and offers reliable service.",
+    "competitor_density": "Moderate; differentiate through service quality, delivery and digital visibility.",
+    "season_tip": "festival offers, local demand tracking and inventory discipline",
+    "best_businesses": [
+      "Neighbourhood essentials store",
+      "Mobile / digital service centre",
+      "Home services and repairs"
+    ],
+    "swot": {
+      "strengths": [
+        "Daily-use demand",
+        "Repeat customers"
+      ],
+      "weaknesses": [
+        "Location dependence",
+        "Inventory discipline needed"
+      ],
+      "opportunities": [
+        "Digital ordering",
+        "Local delivery"
+      ],
+      "threats": [
+        "Price competition",
+        "Low-margin stock"
+      ]
+    },
+    "threats": [
+      "Heavy discount competition",
+      "Poor stock turnover"
+    ],
+    "pricing": "Use cost-plus pricing, but benchmark against 3–5 nearby alternatives.",
+    "market_reach": "Taluk centre, nearby villages and digital/local delivery radius.",
+    "scheme": "Eligible financing depends on business type and current official scheme/lender rules"
+  },
+  "Food Processing": {
+    "typical_project_cost": 1200000,
+    "interest_rate": 8.5,
+    "repayment_years": 5,
+    "market_opportunity": "Strong when local raw materials can be converted into consistent, branded products.",
+    "competitor_density": "Low to moderate in specialized local products; distribution quality matters.",
+    "season_tip": "raw-material availability, hygiene and shelf-life planning",
+    "best_businesses": [
+      "Millet-based snacks",
+      "Spice and masala processing",
+      "Pickles and ready-to-cook products"
+    ],
+    "swot": {
+      "strengths": [
+        "Value addition",
+        "Local sourcing"
+      ],
+      "weaknesses": [
+        "Quality control",
+        "Shelf-life management"
+      ],
+      "opportunities": [
+        "Online/local retail",
+        "Institutional buyers"
+      ],
+      "threats": [
+        "Input price changes",
+        "Food safety compliance"
+      ]
+    },
+    "threats": [
+      "Raw material fluctuation",
+      "Spoilage"
+    ],
+    "pricing": "Calculate raw material + packaging + labour + distribution before setting margins.",
+    "market_reach": "Retail stores, weekly markets, online/local resellers.",
+    "scheme": "Check MSME, food-processing and lender options currently available"
+  },
+  "Agriculture & Allied": {
+    "typical_project_cost": 1000000,
+    "interest_rate": 8.0,
+    "repayment_years": 5,
+    "market_opportunity": "Potential is linked to local crop patterns, irrigation, livestock and aggregation access.",
+    "competitor_density": "Varies by taluk and existing farm enterprises.",
+    "season_tip": "crop calendar, monsoon dependence and harvest demand",
+    "best_businesses": [
+      "Farm equipment rental",
+      "Value-added farm products",
+      "Dairy / poultry support services"
+    ],
+    "swot": {
+      "strengths": [
+        "Strong local relevance",
+        "Recurring rural demand"
+      ],
+      "weaknesses": [
+        "Season dependence",
+        "Logistics"
+      ],
+      "opportunities": [
+        "Farmer groups",
+        "Aggregation"
+      ],
+      "threats": [
+        "Weather variability",
+        "Commodity price changes"
+      ]
+    },
+    "threats": [
+      "Seasonal income variation",
+      "Weather disruption"
+    ],
+    "pricing": "Use seasonal packages and calculate maintenance/logistics costs carefully.",
+    "market_reach": "Village clusters, FPOs, markets and taluk buyers.",
+    "scheme": "Verify agriculture/allied-sector finance with authorized institutions"
+  },
+  "Tourism & Hospitality": {
+    "typical_project_cost": 1500000,
+    "interest_rate": 9.0,
+    "repayment_years": 6,
+    "market_opportunity": "High in destination and transit areas when service quality and discoverability are strong.",
+    "competitor_density": "Moderate to high in popular destinations.",
+    "season_tip": "peak-season pricing, reviews and advance booking",
+    "best_businesses": [
+      "Homestay support services",
+      "Local food experience",
+      "Guided local experiences"
+    ],
+    "swot": {
+      "strengths": [
+        "Experience-based demand",
+        "Upselling"
+      ],
+      "weaknesses": [
+        "Seasonality",
+        "Service consistency"
+      ],
+      "opportunities": [
+        "Online discovery",
+        "Tour partnerships"
+      ],
+      "threats": [
+        "Off-season demand",
+        "Reputation risk"
+      ]
+    },
+    "threats": [
+      "Low off-season occupancy",
+      "Negative reviews"
+    ],
+    "pricing": "Use weekday/weekend and peak/off-peak pricing bands.",
+    "market_reach": "Tourists, travel partners and online listings.",
+    "scheme": "Check current tourism/MSME finance eligibility"
+  },
+  "Beauty & Personal Care": {
+    "typical_project_cost": 900000,
+    "interest_rate": 8.5,
+    "repayment_years": 5,
+    "market_opportunity": "Promising in dense residential and town markets with differentiated service.",
+    "competitor_density": "Moderate to high; customer experience is important.",
+    "season_tip": "festival packages, wedding demand and repeat memberships",
+    "best_businesses": [
+      "Beauty studio",
+      "Bridal service",
+      "Personal care retail + services"
+    ],
+    "swot": {
+      "strengths": [
+        "Repeat clients",
+        "Service upselling"
+      ],
+      "weaknesses": [
+        "Skill dependence",
+        "Trend sensitivity"
+      ],
+      "opportunities": [
+        "Packages",
+        "Social media discovery"
+      ],
+      "threats": [
+        "High local competition",
+        "Staff turnover"
+      ]
+    },
+    "threats": [
+      "Price undercutting",
+      "Fast-changing trends"
+    ],
+    "pricing": "Bundle services and protect margins instead of competing only on the lowest price.",
+    "market_reach": "Nearby residential areas, colleges and social media audience.",
+    "scheme": "Verify MSME/service-sector lending options"
+  },
+  "Manufacturing & Handicrafts": {
+    "typical_project_cost": 2000000,
+    "interest_rate": 9.0,
+    "repayment_years": 6,
+    "market_opportunity": "Good where skills, raw materials and reliable buyers can be connected.",
+    "competitor_density": "Varies strongly by product niche.",
+    "season_tip": "production planning and order cycles",
+    "best_businesses": [
+      "Local handicrafts",
+      "Custom fabrication",
+      "Eco-friendly utility products"
+    ],
+    "swot": {
+      "strengths": [
+        "Product differentiation",
+        "Skill-based value"
+      ],
+      "weaknesses": [
+        "Capital intensity",
+        "Quality consistency"
+      ],
+      "opportunities": [
+        "B2B buyers",
+        "Online catalogues"
+      ],
+      "threats": [
+        "Input cost rise",
+        "Demand uncertainty"
+      ]
+    },
+    "threats": [
+      "Machine downtime",
+      "Buyer concentration"
+    ],
+    "pricing": "Include wastage, labour, overhead and distribution in unit economics.",
+    "market_reach": "Retail, wholesalers, B2B and online markets.",
+    "scheme": "Check current MSME/manufacturing financing options"
+  }
+}

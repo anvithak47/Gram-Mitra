@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}Loan Assistance — Gram Mitra{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <span class="eyebrow">LOAN ASSISTANCE</span>
+  <h1>From scheme selection to application readiness.</h1>
+  <p>Get a personalized view of the applicable scheme, lending channels, documents, benefits and next steps.</p>
+</section>
+
+<section class="loan-assist-layout">
+  <form id="loanAssistForm" class="form-card">
+    <div class="form-section">
+      <h3>👤 Applicant profile</h3>
+      <div class="two-col">
+        <label>Category
+          <select id="laCategory" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="OBC">OBC</option>
+            <option value="GENERAL">General</option>
+          </select>
+        </label>
+        <label>Annual family income (₹)
+          <input id="laIncome" type="number" min="0" step="1" placeholder="Example: 300000" required>
+        </label>
+      </div>
+      <div class="profile-checks">
+        <label class="check-row"><input id="laWoman" type="checkbox"> <span>Woman entrepreneur</span></label>
+        <label class="check-row"><input id="laPwd" type="checkbox"> <span>Person with disability</span></label>
+        <label class="check-row"><input id="laSenior" type="checkbox"> <span>Senior citizen entrepreneur</span></label>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>💰 Project & location</h3>
+      <div class="two-col">
+        <label>Project cost (₹)
+          <input id="laProjectCost" type="number" min="0" step="1" placeholder="Example: 200000" required>
+        </label>
+        <label>District
+          <input id="laDistrict" placeholder="Enter district" value="" required>
+        </label>
+      </div>
+    </div>
+
+    <button class="btn full" type="submit">Check Loan Assistance →</button>
+  </form>
+
+  <aside class="side-card">
+    <span>WHAT THIS CHECKS</span>
+    <ul>
+      <li>Automatic MFS / TLS / MSME routing</li>
+      <li>Finance, interest & repayment snapshot</li>
+      <li>Authorized lending channels</li>
+      <li>Personalized document checklist</li>
+      <li>Category & profile benefits</li>
+      <li>Missing-document guidance</li>
+      <li>Loan application readiness</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- Results section remains hidden until form submission -->
+<section id="loanResult" class="loan-result hidden" style="display: none;">
+  <div class="loan-hero">
+    <div>
+      <span class="eyebrow">RECOMMENDED ROUTE</span>
+      <h2 id="laSchemeName"></h2>
+      <p id="laEligibility"></p>
+    </div>
+    <div class="readiness">
+      <span>APPLICATION READINESS</span>
+      <strong id="laReadiness"></strong>
+    </div>
+  </div>
+
+  <div class="metrics-grid">
+    <div><span>Project cost</span><b id="laCost"></b></div>
+    <div><span>Required margin</span><b id="laMargin"></b></div>
+    <div><span>Indicative finance</span><b id="laLoan"></b></div>
+    <div><span>Beneficiary rate</span><b id="laRate"></b></div>
+  </div>
+
+  <div class="loan-grid">
+    <article class="loan-card">
+      <h3>🏦 Where can you apply?</h3>
+      <p class="muted">The scheme is routed through authorized channel partners. Exact participating branches should be verified before applying.</p>
+      <div id="laChannels"></div>
+      <a class="btn btn-small" target="_blank" rel="noopener" href="https://pmsuraj.dosje.gov.in/">Open PM-SURAJ →</a>
+    </article>
+    <article class="loan-card">
+      <h3>📋 Your document checklist</h3>
+      <div id="laDocs"></div>
+    </article>
+    <article class="loan-card">
+      <h3>🎁 Benefits & concessions</h3>
+      <div id="laBenefits"></div>
+    </article>
+    <article class="loan-card">
+      <h3>♻️ If a document is missing</h3>
+      <div id="laMissing"></div>
+    </article>
+  </div>
+
+  <article class="loan-card roadmap-card">
+    <h3>🚀 Application roadmap</h3>
+    <div id="laRoadmap" class="roadmap"></div>
+  </article>
+  
+  <p class="verification-note">⚠️ Gram Mitra uses a verified-rules approach. Scheme eligibility, participating lenders, accepted documents and any concession must be confirmed with the current official scheme/lender before application.</p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/loan_assistance.js') }}"></script>
+{% endblock %}

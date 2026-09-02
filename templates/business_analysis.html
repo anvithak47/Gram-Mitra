@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block title %}Business Analysis — Gram Mitra{% endblock %}
+
+{% block content %}
+<section class="page-head">
+  <span class="eyebrow" data-i18n="main_feature">MAIN FEATURE</span>
+  <h1 data-i18n="analysis_head">Business Analysis</h1>
+  <p data-i18n="analysis_intro">Tell Gram Mitra where and what you want to build.</p>
+</section>
+
+<section class="analysis-layout">
+<form id="analysisForm" class="analysis-form">
+ <div class="form-section">
+   <h3 data-i18n="business_location">📍 Business location</h3>
+   <button type="button" class="location-btn" id="liveLocation" data-i18n="live_location">Use my live location</button>
+   <small id="locationStatus"><span data-i18n="location_status">Browser permission is required for live location.</span></small>
+   <label>
+     <span data-i18n="detected_address">Detected address</span>
+     <input id="address" name="address" data-i18n-placeholder="address_placeholder" placeholder="Filled when location is available">
+   </label>
+   <div class="two-col">
+     <label>
+       <span data-i18n="district">District</span>
+       <select id="district" required>
+         <option value="" disabled selected data-i18n="select_district">Select district</option>
+       </select>
+     </label>
+     <label>
+       <span data-i18n="taluk">Taluk</span>
+       <select id="taluk" required>
+         <option value="" disabled selected data-i18n="select_taluk">Select taluk</option>
+       </select>
+     </label>
+   </div>
+   <label>
+     <span data-i18n="village">Village / Gram Panchayat</span> 
+     <span class="optional" data-i18n="optional">(optional)</span>
+     <input id="village" data-i18n-placeholder="village_placeholder" placeholder="Enter village or Gram Panchayat">
+   </label>
+ </div>
+
+ <div class="form-section">
+   <h3 data-i18n="business_context">💼 Business context</h3>
+   <label>
+     <span data-i18n="business_idea">Specific business idea</span>
+     <input id="businessIdea" name="business_idea" data-i18n-placeholder="business_idea_placeholder" placeholder="Example: Bakery, tailoring shop, mobile repair">
+   </label>
+   <label>
+     <span data-i18n="category">Business category</span>
+     <select id="category" required>
+       <option value="" disabled selected data-i18n="select_category">Select category</option>
+     </select>
+   </label>
+   <input type="hidden" id="latitude">
+   <input type="hidden" id="longitude">
+   <label>
+     <span data-i18n="margin_capital">Available margin capital (₹)</span>
+     <input id="capital" type="number" min="0" step="1" required data-i18n-placeholder="capital_placeholder" placeholder="Example: 100000">
+   </label>
+ </div>
+
+ <button class="btn full" type="submit" data-i18n="generate_analysis">Generate Business Analysis →</button>
+</form>
+
+<aside class="analysis-side">
+  <div class="side-card">
+    <span data-i18n="what_analyzed">WHAT WILL BE ANALYZED</span>
+    <ul>
+      <li data-i18n="viability">Viability score</li>
+      <li data-i18n="best_directions">Best local business directions</li>
+      <li data-i18n="market_competitors">Market & competitors</li>
+      <li data-i18n="seasonal_context">Seasonal context</li>
+      <li data-i18n="swot_threats">SWOT & threats</li>
+      <li data-i18n="pricing_reach">Pricing & market reach</li>
+      <li data-i18n="project_working">Project cost & working capital</li>
+      <li data-i18n="finance_estimate">10% margin → 90% finance estimate</li>
+      <li data-i18n="repayment">Quarterly repayment estimate</li>
+      <li data-i18n="visual_mapping">8–10 km visual competitor map</li>
+    </ul>
+  </div>
+</aside>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/location.js') }}"></script>
+<script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+
+<script>
+// Function to save current form inputs into localStorage
+function saveAnalysisForm() {
+    const formData = {
+        district: document.getElementById('district')?.value || '',
+        taluk: document.getElementById('taluk')?.value || '',
+        village: document.getElementById('village')?.value || '',
+        address: document.getElementById('address')?.value || '',
+        category: document.getElementById('category')?.value || '',
+        capital: document.getElementById('capital')?.value || '',
+        businessIdea: document.getElementById('businessIdea')?.value || '',
+        latitude: document.getElementById('latitude')?.value || '',
+        longitude: document.getElementById('longitude')?.value || ''
+    };
+    localStorage.setItem('savedAnalysisInputs', JSON.stringify(formData));
+}
+
+// Function to restore saved form inputs from localStorage
+function restoreAnalysisForm() {
+    const savedData = localStorage.getItem('savedAnalysisInputs');
+    if (!savedData) return;
+
+    try {
+        const data = JSON.parse(savedData);
+
+        if (data.address && document.getElementById('address')) document.getElementById('address').value = data.address;
+        if (data.village && document.getElementById('village')) document.getElementById('village').value = data.village;
+        if (data.businessIdea && document.getElementById('businessIdea')) document.getElementById('businessIdea').value = data.businessIdea;
+        if (data.capital && document.getElementById('capital')) document.getElementById('capital').value = data.capital;
+        if (data.latitude && document.getElementById('latitude')) document.getElementById('latitude').value = data.latitude;
+        if (data.longitude && document.getElementById('longitude')) document.getElementById('longitude').value = data.longitude;
+
+        // Set district select box
+        const districtSelect = document.getElementById('district');
+        if (districtSelect && data.district) {
+            districtSelect.value = data.district;
+            districtSelect.dispatchEvent(new Event('change'));
+        }
+
+        // Delay setting dependent dropdowns (like taluk & category) to ensure dynamic options are loaded
+        setTimeout(() => {
+            const talukSelect = document.getElementById('taluk');
+            if (talukSelect && data.taluk) talukSelect.value = data.taluk;
+
+            const categorySelect = document.getElementById('category');
+            if (categorySelect && data.category) categorySelect.value = data.category;
+        }, 150);
+    } catch (e) {
+        console.error('Error restoring form inputs:', e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Restore inputs when returning to the page
+    restoreAnalysisForm();
+
+    // Auto-save form inputs whenever user modifies them
+    const formElements = document.querySelectorAll('#analysisForm input, #analysisForm select, #analysisForm textarea');
+    formElements.forEach(element => {
+        element.addEventListener('input', saveAnalysisForm);
+        element.addEventListener('change', saveAnalysisForm);
+    });
+});
+
+document.getElementById('analysisForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Save state one last time before processing submission
+    saveAnalysisForm();
+
+    const categorySelect = document.getElementById('category');
+    const selectedCategory = categorySelect.value || categorySelect.options[categorySelect.selectedIndex]?.text || '';
+    const businessIdea = document.getElementById('businessIdea').value;
+
+    const payload = {
+        district: document.getElementById('district').value,
+        taluk: document.getElementById('taluk').value,
+        village: document.getElementById('village').value,
+        address: document.getElementById('address').value,
+        category: selectedCategory,
+        capital: parseFloat(document.getElementById('capital').value || 0),
+        business_idea: businessIdea,
+        latitude: document.getElementById('latitude').value,
+        longitude: document.getElementById('longitude').value,
+        lang: localStorage.getItem('appLanguage') || 'en'
+    };
+
+    // 1. Save submission log asynchronously
+    fetch('/submit_farmer_details', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            land_area: payload.capital,
+            crop_type: businessIdea ? `${businessIdea} (${selectedCategory})` : selectedCategory,
+            location: [payload.village, payload.taluk, payload.district].filter(Boolean).join(', ')
+        })
+    }).catch(error => console.error('Database save error:', error));
+
+    // 2. Trigger analysis calculator logic or direct backend request
+    if (typeof runCalculator === 'function') {
+        runCalculator();
+    } else if (typeof generateAnalysis === 'function') {
+        generateAnalysis();
+    } else {
+        // Fallback API call & redirection
+        fetch('/api/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Store analysis response so Loan Help page can render finance data properly
+            localStorage.setItem('analysisData', JSON.stringify(data));
+            
+            const searchParams = new URLSearchParams({
+                capital: payload.capital,
+                category: payload.category,
+                location: [payload.village, payload.taluk, payload.district].filter(Boolean).join(', ')
+            });
+            window.location.href = '/report?' + searchParams.toString();
+        })
+        .catch(err => {
+            console.error('Analysis error:', err);
+            alert('Failed to generate analysis. Please try again.');
+        });
+    }
+});
+</script>
+{% endblock %}

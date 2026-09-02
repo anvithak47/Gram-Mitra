@@ -1,0 +1,89 @@
+{
+  "schemes": {
+    "MFS": {
+      "name": "Micro Finance Scheme (MFS)",
+      "project_max": 140000,
+      "loan_max": 125000,
+      "finance_percent": 90,
+      "beneficiary_rate": 6.5,
+      "repayment_years": 3,
+      "moratorium_months": 3,
+      "frequency": "quarterly",
+      "channels": ["State Channelizing Agencies (SCAs)", "Other Channelizing Agencies (CAs)", "Public Sector Banks (PSBs)", "Regional Rural Banks (RRBs)"],
+      "source": "NSFDC FAQ / 2025-26 Annual Report"
+    },
+    "TLS": {
+      "name": "Term Loan Scheme (TLS)",
+      "project_min_exclusive": 140000,
+      "project_max": 5000000,
+      "loan_max": 4500000,
+      "finance_percent": 90,
+      "beneficiary_rate": 8.0,
+      "repayment_years": 7,
+      "moratorium_months": 6,
+      "frequency": "as per sanctioned schedule",
+      "channels": ["State Channelizing Agencies (SCAs)", "Other Channelizing Agencies (CAs)", "Public Sector Banks (PSBs)", "Regional Rural Banks (RRBs)"],
+      "source": "NSFDC FAQ / 2025-26 Annual Report"
+    }
+  },
+  "profile_rules": {
+    "SC": {
+      "status": "eligible_target_group",
+      "title": "SC applicant",
+      "notes": [
+        "NSFDC currently serves Scheduled Caste beneficiaries.",
+        "Current NSFDC FAQ states annual family income for loan beneficiaries must not exceed ₹5 lakh.",
+        "A valid caste certificate issued by the competent authority is required."
+      ],
+      "documents": ["Valid SC caste certificate", "Income proof / income certificate", "KYC documents", "Project/business proposal", "Cost estimates or quotations where applicable", "Bank/account details as required by the lender"]
+    },
+    "ST": {
+      "status": "not_target_group",
+      "title": "ST applicant",
+      "notes": ["NSFDC now functions exclusively for Scheduled Caste beneficiaries. ST applicants should be routed to the appropriate Scheduled Tribes finance/development channel instead of NSFDC."],
+      "documents": ["Valid ST certificate", "Income proof", "KYC documents", "Business/project documents"],
+      "alternatives": ["Check NSTFDC / the relevant State ST Development Corporation and its current channel partners."]
+    },
+    "OBC": {
+      "status": "not_target_group",
+      "title": "OBC applicant",
+      "notes": ["OBC applicants are not the target group of NSFDC. Gram Mitra should route them to the appropriate OBC finance/development channel rather than presenting NSFDC as eligible."],
+      "documents": ["Valid OBC certificate where the alternate scheme requires it", "Income proof", "KYC documents", "Business/project documents"],
+      "alternatives": ["Check NBCFDC and the relevant State Backward Classes Development Corporation for current schemes and channel partners."]
+    },
+    "GENERAL": {
+      "status": "not_target_group",
+      "title": "General category applicant",
+      "notes": ["The two NSFDC schemes configured here are targeted to Scheduled Caste beneficiaries. General-category applicants should be shown alternative mainstream or sector-specific schemes instead of being marked eligible for NSFDC."],
+      "documents": ["KYC documents", "Income proof if required by the alternate scheme", "Business/project documents"],
+      "alternatives": ["Explore other government or bank MSME/enterprise schemes that match the business and applicant profile."]
+    }
+  },
+  "benefit_rules": {
+    "SC": [
+      "Concessional beneficiary interest rates are built into MFS/TLS when the applicant is eligible and the loan is sanctioned under the scheme.",
+      "Women beneficiaries: NSFDC currently states a 40% targeted allocation of funds under Term Loan and Micro Finance Schemes for women beneficiaries; this is not an automatic interest-rate discount."
+    ],
+    "WOMAN": [
+      "For an eligible SC woman, the current NSFDC FAQ states a 40% targeted allocation of funds under Term Loan and Micro Finance Schemes for women beneficiaries.",
+      "This should be displayed as a targeted-allocation benefit, not as an automatic rate concession."
+    ],
+    "PWD": [
+      "No universal NSFDC interest concession for disability is asserted here. Gram Mitra should check the applicant's other applicable corporation/state scheme before promising a concession.",
+      "If a disability-specific scheme is selected, require the relevant disability certificate and verify the current scheme rules."
+    ],
+    "SENIOR": [
+      "No universal NSFDC senior-citizen concession is asserted here. Any age-based benefit must be verified against the selected lender or alternate scheme."
+    ]
+  },
+  "document_guidance": {
+    "caste_certificate": "If missing, do not substitute an invented document. Guide the user to obtain/reissue the certificate from the competent authority or confirm with the channelizing agency whether a digitally issued/electronic certificate is accepted.",
+    "income_proof": "If missing, guide the user to obtain the current income certificate/proof accepted by the relevant authority or lender. Acceptance of alternatives is lender-specific.",
+    "kyc": "If a particular KYC document is unavailable, show the lender's current accepted KYC list instead of assuming a substitute.",
+    "business_documents": "Project report, quotations, licenses/registrations and other business documents depend on the activity and lender. Mark them as conditional rather than universally mandatory."
+  },
+  "official_links": {
+    "nsfdc": "https://nsfdc.nic.in/",
+    "pmsuraj": "https://pmsuraj.dosje.gov.in/"
+  }
+}

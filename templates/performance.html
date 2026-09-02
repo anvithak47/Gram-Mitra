@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Business Performance — Gram Mitra{% endblock %}
+{% block content %}
+<section class="page-head">
+  <span class="eyebrow">BUSINESS PERFORMANCE</span>
+  <h1>Track revenue, expenses and profit.</h1>
+  <p>Enter your actual monthly figures and Gram Mitra will turn them into a simple business health view for the month and year.</p>
+</section>
+
+<section class="performance-wrap">
+  <div class="performance-toolbar">
+    <div>
+      <strong>📊 Financial performance tracker</strong>
+      <p class="muted">Revenue − operating expenses − EMI = cash after repayment. Profit before EMI is shown separately.</p>
+    </div>
+    <div class="toolbar-actions">
+      <button class="btn btn-small" id="loadAnalysisBtn" type="button">Use latest analysis EMI</button>
+      <button class="btn btn-small btn-ghost" id="clearPerformanceBtn" type="button">Clear data</button>
+    </div>
+  </div>
+
+  <section class="performance-summary">
+    <article class="perf-stat"><span>Annual revenue</span><strong id="annualRevenue">₹0</strong><small id="revenueTrend">Enter monthly figures</small></article>
+    <article class="perf-stat"><span>Annual expenses</span><strong id="annualExpenses">₹0</strong><small>Operating costs</small></article>
+    <article class="perf-stat"><span>Annual profit</span><strong id="annualProfit">₹0</strong><small>Before EMI</small></article>
+    <article class="perf-stat"><span>Cash after EMI</span><strong id="annualCash">₹0</strong><small>Available after repayment</small></article>
+  </section>
+
+  <section class="performance-chart-card">
+    <div class="chart-head"><div><span class="eyebrow">12-MONTH VIEW</span><h2>Revenue & profit trend</h2></div><div class="legend"><span><i class="legend-revenue"></i>Revenue</span><span><i class="legend-profit"></i>Profit</span></div></div>
+    <div class="bar-chart" id="performanceChart" aria-label="Revenue and profit chart"></div>
+  </section>
+
+  <section class="performance-table-card">
+    <div class="table-head"><div><h2>Monthly business figures</h2><p class="muted">Use actual figures when available. Leave future months at zero.</p></div><button class="btn btn-small" id="savePerformanceBtn" type="button">Save performance</button></div>
+    <div class="table-scroll">
+      <table class="performance-table">
+        <thead><tr><th>Month</th><th>Revenue (₹)</th><th>Operating expenses (₹)</th><th>EMI (₹)</th><th>Profit before EMI</th><th>Cash after EMI</th><th>Margin</th></tr></thead>
+        <tbody id="performanceRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="performance-insight" id="performanceInsight">
+    <div class="insight-icon">🤖</div><div><span class="eyebrow">GRAM MITRA INSIGHT</span><h3 id="insightTitle">Add your monthly figures to begin.</h3><p id="insightText">Once you enter revenue, expenses and EMI, this section will summarize profitability, cash flow and repayment pressure.</p></div>
+  </section>
+
+  <p class="verification-note">ℹ️ These calculations are based only on the figures you enter. They are management estimates, not audited financial statements or a guarantee of loan repayment capacity.</p>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/performance.js') }}"></script>{% endblock %}

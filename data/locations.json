@@ -1,0 +1,286 @@
+{
+  "Bengaluru Urban": [
+    "Bengaluru North",
+    "Bengaluru South",
+    "Bengaluru East",
+    "Anekal",
+    "Yelahanka"
+  ],
+  "Bengaluru Rural": [
+    "Devanahalli",
+    "Doddaballapura",
+    "Hoskote",
+    "Nelamangala"
+  ],
+  "Bagalkote": [
+    "Bagalkote",
+    "Badami",
+    "Bilagi",
+    "Hunagunda",
+    "Jamkhandi",
+    "Mudhol",
+    "Rabkavi-Banhatti",
+    "Ilkal",
+    "Guledagudda"
+  ],
+  "Ballari": [
+    "Ballari",
+    "Hosapete",
+    "Kampli",
+    "Kudligi",
+    "Sandur",
+    "Siruguppa"
+  ],
+  "Belagavi": [
+    "Belagavi",
+    "Athani",
+    "Bailhongal",
+    "Chikodi",
+    "Gokak",
+    "Hukkeri",
+    "Khanapur",
+    "Ramdurg",
+    "Raibag",
+    "Savadatti",
+    "Kagawad",
+    "Nippani"
+  ],
+  "Bidar": [
+    "Bidar",
+    "Aurad",
+    "Basavakalyan",
+    "Bhalki",
+    "Hulasuru",
+    "Chitgoppa",
+    "Kamalnagar"
+  ],
+  "Chamarajanagar": [
+    "Chamarajanagar",
+    "Gundlupet",
+    "Kollegala",
+    "Hanur",
+    "Yelandur"
+  ],
+  "Chikkaballapur": [
+    "Chikkaballapur",
+    "Bagepalli",
+    "Chintamani",
+    "Gauribidanur",
+    "Gudibande",
+    "Sidlaghatta"
+  ],
+  "Chikkamagaluru": [
+    "Chikkamagaluru",
+    "Ajjampura",
+    "Kadur",
+    "Koppa",
+    "Mudigere",
+    "Narasimharajapura",
+    "Sringeri",
+    "Tarikere"
+  ],
+  "Chitradurga": [
+    "Chitradurga",
+    "Challakere",
+    "Hiriyur",
+    "Holalkere",
+    "Hosadurga",
+    "Molakalmuru"
+  ],
+  "Dakshina Kannada": [
+    "Mangaluru",
+    "Bantwal",
+    "Belthangady",
+    "Moodabidri",
+    "Puttur",
+    "Sullia",
+    "Kadaba",
+    "Mulki"
+  ],
+  "Davanagere": [
+    "Davanagere",
+    "Channagiri",
+    "Honnali",
+    "Harihar",
+    "Jagalur",
+    "Nyamathi"
+  ],
+  "Dharwad": [
+    "Dharwad",
+    "Hubballi",
+    "Kalghatgi",
+    "Kundgol",
+    "Navalgund",
+    "Annigeri",
+    "Alnavar"
+  ],
+  "Gadag": [
+    "Gadag",
+    "Gajendragad",
+    "Lakshmeshwar",
+    "Mundargi",
+    "Nargund",
+    "Ron",
+    "Shirhatti"
+  ],
+  "Hassan": [
+    "Hassan",
+    "Alur",
+    "Arasikere",
+    "Arkalgud",
+    "Belur",
+    "Channarayapatna",
+    "Holenarasipura",
+    "Sakleshpur"
+  ],
+  "Haveri": [
+    "Haveri",
+    "Byadgi",
+    "Hanagal",
+    "Hirekerur",
+    "Ranebennur",
+    "Savanur",
+    "Shiggaon",
+    "Rattihalli"
+  ],
+  "Kalaburagi": [
+    "Kalaburagi",
+    "Afzalpur",
+    "Aland",
+    "Chincholi",
+    "Chittapur",
+    "Jevargi",
+    "Sedam",
+    "Kamalapura",
+    "Shahabad"
+  ],
+  "Kodagu": [
+    "Madikeri",
+    "Somwarpet",
+    "Virajpet",
+    "Kushalnagar",
+    "Ponnampet"
+  ],
+  "Kolar": [
+    "Kolar",
+    "Bangarapet",
+    "Malur",
+    "Mulbagal",
+    "Srinivaspur"
+  ],
+  "Koppal": [
+    "Koppal",
+    "Gangavathi",
+    "Kushtagi",
+    "Kanakagiri",
+    "Kuknur",
+    "Yelburga",
+    "Karadkal"
+  ],
+  "Mandya": [
+    "Mandya",
+    "Maddur",
+    "Malavalli",
+    "Nagamangala",
+    "Pandavapura",
+    "Krishnarajpet",
+    "Srirangapatna"
+  ],
+  "Mysuru": [
+    "Mysuru",
+    "Hunsur",
+    "Krishnarajanagara",
+    "Nanjangud",
+    "Periyapatna",
+    "Tirumakudal-Narsipur",
+    "Heggadadevanakote",
+    "Saragur",
+    "Saligrama"
+  ],
+  "Raichur": [
+    "Raichur",
+    "Devadurga",
+    "Lingasugur",
+    "Manvi",
+    "Sindhanur",
+    "Maski",
+    "Sirwar"
+  ],
+  "Ramanagara": [
+    "Ramanagara",
+    "Channapatna",
+    "Kanakapura",
+    "Magadi",
+    "Harohalli"
+  ],
+  "Shivamogga": [
+    "Shivamogga",
+    "Bhadravati",
+    "Hosanagara",
+    "Sagar",
+    "Shikaripura",
+    "Soraba",
+    "Thirthahalli"
+  ],
+  "Tumakuru": [
+    "Tumakuru",
+    "Chikkanayakanahalli",
+    "Gubbi",
+    "Koratagere",
+    "Kunigal",
+    "Madhugiri",
+    "Pavagada",
+    "Sira",
+    "Tiptur",
+    "Turuvekere"
+  ],
+  "Udupi": [
+    "Udupi",
+    "Karkala",
+    "Kundapura",
+    "Brahmavar",
+    "Byndoor",
+    "Hebri"
+  ],
+  "Uttara Kannada": [
+    "Karwar",
+    "Ankola",
+    "Bhatkal",
+    "Haliyal",
+    "Honnavar",
+    "Joida",
+    "Kumta",
+    "Mundgod",
+    "Siddapur",
+    "Sirsi",
+    "Yellapur"
+  ],
+  "Vijayapura": [
+    "Vijayapura",
+    "Basavana Bagewadi",
+    "Indi",
+    "Muddebihal",
+    "Sindagi",
+    "Tikota",
+    "Devara Hipparagi",
+    "Talikote",
+    "Babaleshwar",
+    "Chadchan"
+  ],
+  "Vijayanagara": [
+    "Hosapete",
+    "Harpanahalli",
+    "Hagaribommanahalli",
+    "Hoovina Hadagali",
+    "Kotturu",
+    "Kudligi"
+  ],
+  "Yadgir": [
+    "Yadgir",
+    "Shahapur",
+    "Shorapur",
+    "Gurumitkal",
+    "Hunsagi",
+    "Vadagera"
+  ]
+}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-symbol">✦</div>
+    <h1 data-i18n="welcome_back">Welcome back</h1>
+    <p data-i18n="login_text">Log in to continue your Gram Mitra workspace.</p>
+
+    {% if error %}
+      <div class="error" data-i18n="{{ error_key or 'generic_error' }}">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+      <div class="form-group">
+        <label data-i18n="email">Email</label>
+        <input type="email" name="email" required placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label data-i18n="password">Password</label>
+        <input type="password" name="password" required placeholder="Your password">
+      </div>
+
+      <button class="btn full" type="submit" data-i18n="login">Login</button>
+    </form>
+
+    <p class="auth-switch">
+      <span data-i18n="new_here">New here?</span> 
+      <a data-i18n="create_account" href="{{ url_for('signup') }}">Create an account</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}{% block title %}Gram Mitra — Karnataka Business AI{% endblock %}
+{% block content %}
+<section class="hero">
+ <div class="hero-copy">
+   <div class="eyebrow" data-i18n="hero_eyebrow">KARNATAKA · LOCAL BUSINESS INTELLIGENCE</div>
+   <h1 data-i18n="hero_title">Turn local insight into a stronger business.</h1>
+   <p data-i18n="hero_text">Gram Mitra helps aspiring micro-entrepreneurs understand market opportunity, competition, seasonal demand, project cost and indicative financing.</p>
+   <div class="hero-actions">
+    <a class="btn" href="{{ url_for('dashboard') if user else url_for('signup') }}" data-i18n="hero_cta">Start Business Analysis →</a>
+    <a class="btn btn-ghost" href="#how" data-i18n="hero_secondary">See how it works</a>
+   </div>
+   <div class="trust-row"><span data-i18n="districts">31 Districts</span><span>•</span><span data-i18n="local_view">Local market view</span><span>•</span><span data-i18n="language_pair">English + ಕನ್ನಡ</span></div>
+ </div>
+ <div class="hero-visual">
+   <div class="glow-card main-card"><div class="mini-label" data-i18n="business_viability">BUSINESS VIABILITY</div><div class="score">8.4<span>/10</span></div><div class="meter"><i style="width:84%"></i></div><p data-i18n="viability_score">Indicative opportunity score</p></div>
+   <div class="floating-card card-a" data-i18n="location_aware">📍 Location-aware analysis</div>
+   <div class="floating-card card-b" data-i18n="finance_estimate_card">₹ 10% Margin → 90% Finance estimate</div>
+   <div class="orbit orbit1"></div><div class="orbit orbit2"></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-heading"><span class="eyebrow" data-i18n="features_eyebrow">WHAT YOU GET</span><h2 data-i18n="features_title">Everything needed for a better first business decision.</h2></div>
+ <div class="feature-grid">
+  <article class="feature-card"><b>01</b><h3 data-i18n="feature1_title">📊 Business Viability</h3><p data-i18n="feature1_text">Get an easy-to-read score with market opportunity and competition context.</p></article>
+  <article class="feature-card"><b>02</b><h3 data-i18n="feature2_title">📍 Local Intelligence</h3><p data-i18n="feature2_text">Select district and taluk, optionally add village, and use live browser location.</p></article>
+  <article class="feature-card"><b>03</b><h3 data-i18n="feature3_title">₹ Financial Estimate</h3><p data-i18n="feature3_text">Project cost, 10% margin, indicative 90% financing and quarterly repayment.</p></article>
+  <article class="feature-card"><b>04</b><h3 data-i18n="feature4_title">🧠 Strategy</h3><p data-i18n="feature4_text">SWOT, threats, pricing, market reach and working-capital guidance.</p></article>
+  <article class="feature-card"><b>05</b><h3 data-i18n="feature5_title">🤖 Gram Mitra Copilot</h3><p data-i18n="feature5_text">Ask business questions in English or Kannada in a focused chat experience.</p></article>
+  <article class="feature-card"><b>06</b><h3 data-i18n="feature6_title">📄 Shareable Report</h3><p data-i18n="feature6_text">Generate your analysis and download a clean PDF report.</p></article>
+ </div>
+</section>
+
+<section class="how-section" id="how">
+ <div><span class="eyebrow" data-i18n="how_eyebrow">HOW IT WORKS</span><h2 data-i18n="how_title">From idea to informed action.</h2></div>
+ <div class="steps"><div><em>1</em><h3 data-i18n="step1_title">Create account</h3><p data-i18n="step1_text">Sign up once to access your workspace.</p></div><div><em>2</em><h3 data-i18n="step2_title">Add business context</h3><p data-i18n="step2_text">Choose location, category and available margin capital.</p></div><div><em>3</em><h3 data-i18n="step3_title">Analyze & act</h3><p data-i18n="step3_text">Review results, ask Copilot, then download your report.</p></div></div>
+</section>
+
+<section class="copilot-preview">
+ <div><span class="eyebrow" data-i18n="copilot_eyebrow">AI COPILOT</span><h2 data-i18n="copilot_preview_title">Business guidance that feels like a conversation.</h2><p data-i18n="copilot_preview_text">Ask about a business idea, local market, costs or financing. Switch language anytime.</p><a class="btn" data-i18n="open_copilot" href="{{ url_for('copilot') if user else url_for('signup') }}">Open Gram Mitra Copilot →</a></div>
+ <div class="chat-preview"><div class="bubble ai" data-i18n="preview_greeting">Hello! What business are you planning to start?</div><div class="bubble me" data-i18n="preview_user">I have ₹80,000 and want to start locally.</div><div class="bubble ai" data-i18n="preview_reply">Great. Tell me your district and category, and I’ll help structure the next steps.</div></div>
+</section>
+{% endblock %}

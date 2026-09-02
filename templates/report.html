@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Business Report — Gram Mitra{% endblock %}
+
+{% block content %}
+<section class="page-head report-top">
+  <div>
+    <span class="eyebrow" data-i18n="analysis_result">ANALYSIS RESULT</span>
+    <h1 data-i18n="report_title">Business Intelligence Report</h1>
+    <p id="reportLocation" data-i18n="latest_analysis">Your latest business analysis.</p>
+  </div>
+  <div class="report-actions">
+    <button class="btn" id="pdfBtn" data-i18n="download_pdf">Download PDF</button>
+    <a class="btn btn-ghost" data-i18n="new_analysis" href="{{ url_for('analysis') }}">New Analysis</a>
+  </div>
+</section>
+
+<div id="emptyReport" class="empty-state">
+  <div>📊</div>
+  <h2 data-i18n="no_analysis">No analysis yet</h2>
+  <p data-i18n="run_first">Run Business Analysis first to generate your report.</p>
+  <a class="btn" data-i18n="start" href="{{ url_for('analysis') }}">Start Analysis</a>
+</div>
+
+<section id="reportContent" class="report-content hidden">
+  <div class="score-banner">
+    <div>
+      <span data-i18n="score">BUSINESS VIABILITY SCORE</span>
+      <strong id="viability"></strong>
+    </div>
+    <p id="summary"></p>
+  </div>
+
+  <div class="metrics-grid">
+    <div><span data-i18n="project_cost">Project cost</span><b id="projectCost"></b></div>
+    <div><span data-i18n="margin_needed">10% margin needed</span><b id="margin"></b></div>
+    <div><span data-i18n="finance">Indicative 90% finance</span><b id="loan"></b></div>
+    <div><span data-i18n="quarterly">Quarterly estimate</span><b id="quarterly"></b></div>
+  </div>
+
+  <div class="report-grid">
+    <article>
+      <h3 data-i18n="best_businesses">⭐ Best businesses for this context</h3>
+      <ul id="bestBusinesses"></ul>
+    </article>
+
+    <article>
+      <h3 data-i18n="market_opportunity">📈 Market opportunity</h3>
+      <p id="marketOpportunity"></p>
+      <h4 data-i18n="competitor_density">Competitor density</h4>
+      <p id="competition"></p>
+    </article>
+
+    <!-- EMI & Moratorium Generator Section -->
+    <article class="emi-moratorium-card">
+      <h3>🗓 EMI & Moratorium Generator</h3>
+      <div class="emi-details">
+        <p><strong>Moratorium Period:</strong> <span id="moratoriumPeriod">6 Months (Grace Period)</span></p>
+        <p><strong>Repayment Term:</strong> <span id="repaymentTerm">5 Years (18 Payment Quarters)</span></p>
+        <p><strong>Estimated Quarterly EMI:</strong> <span id="quarterlyEmiVal">₹ 0</span></p>
+        <p><strong>Est. Monthly Ops Cost:</strong> <span id="monthlyOpsCost">₹ 0</span></p>
+        <p><strong>Working Capital Runway:</strong> <span id="workingCapitalBuffer">₹ 0</span></p>
+      </div>
+      <div class="repayment-schedule-box">
+        <h4 style="margin-top: 12px;">Expected Repayment Timeline</h4>
+        <ul class="schedule-list">
+          <li><strong>Months 1 – 6:</strong> Moratorium period (Principal grace phase for business setup).</li>
+          <li><strong>Months 7 – 60:</strong> Regular quarterly EMI repayments commence.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article>
+      <h3 data-i18n="seasonal_analysis">🌦 Seasonal analysis</h3>
+      <p id="season"></p>
+    </article>
+
+    <article>
+      <h3 data-i18n="pricing_suggestions">💰 Pricing suggestions</h3>
+      <p id="pricing"></p>
+      <h4 data-i18n="market_reach">Market reach</h4>
+      <p id="marketReach"></p>
+    </article>
+
+    <article>
+      <h3 data-i18n="threats">⚠ Threats</h3>
+      <ul id="threats"></ul>
+    </article>
+
+    <article>
+      <h3 data-i18n="working_capital">💼 Working capital</h3>
+      <p id="workingCapital"></p>
+      <h4 data-i18n="suggested_route">Suggested route</h4>
+      <p id="scheme"></p>
+    </article>
+  </div>
+
+  <section class="map-box" id="competitionMapSection">
+    <div class="map-head">
+      <div>
+        <span class="eyebrow" data-i18n="local_map_eyebrow">HYPER-LOCAL VISUAL MAP</span>
+        <h2 data-i18n="local_map_title">Similar businesses around you</h2>
+        <p id="mapSummary" class="map-summary">Checking nearby businesses…</p>
+      </div>
+      <div class="radius-toggle" role="group" aria-label="Map radius">
+        <button type="button" class="radius-btn active" data-radius="8">8 km</button>
+        <button type="button" class="radius-btn" data-radius="10">10 km</button>
+      </div>
+    </div>
+
+    <div class="map-stats">
+      <div><span data-i18n="similar_found">Similar businesses found</span><strong id="similarCount">—</strong></div>
+      <div><span data-i18n="nearest_business">Nearest similar business</span><strong id="nearestDistance">—</strong></div>
+      <div><span data-i18n="competition_level">Competition level</span><strong id="mapCompetitionLevel">—</strong></div>
+    </div>
+
+    <div id="businessMap" class="business-map" aria-label="Nearby similar businesses map"></div>
+
+    <div id="mapLegend" class="map-legend">
+      <span>🔵 <b>Your location</b></span>
+      <span>🔴 <b>Similar business</b></span>
+      <span>⭕ <b>Analysis radius</b></span>
+    </div>
+
+    <p class="map-note" data-i18n="map_note">Map results are based on available OpenStreetMap data. Rural coverage may be incomplete; use the map as an indicative local-market signal.</p>
+  </section>
+
+  <section class="swot-box">
+    <h2 data-i18n="swot_analysis">SWOT Analysis</h2>
+    <div id="swotGrid"></div>
+  </section>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+<script src="{{ url_for('static', filename='js/local_map.js') }}"></script>
+{% endblock %}
